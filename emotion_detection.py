@@ -25,6 +25,13 @@ def emotion_detector(text_to_analyze):
 
     # Parsing the JSON response from the API
     formatted_response = json.loads(response.text)
-        
-    # Returning a dictionary containing sentiment analysis results
-    return formatted_response
+    
+    # Extract "emotions"
+    emotions = formatted_response['emotionPredictions'][0]['emotion']
+
+    # Evaluate max emotion
+    max_emotion = max(emotions, key=emotions.get)
+    emotions['dominant_emotion'] = max_emotion
+
+    # Returning a dictionary containing the response in text format
+    return emotions
