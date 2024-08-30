@@ -28,10 +28,10 @@ def sent_analyzer():
 
     # Estraggo l'emozione dominante
     dominant_emotion = json_data['dominant_emotion']
-    
+
     if not dominant_emotion:
         return "<b>Invalid text! Please try again!.</b>"
-    
+
     # Estrazione delle emozioni e dei loro valori
     emotions = {k: v for k, v in json_data.items() if k != 'dominant_emotion'}
 
@@ -39,7 +39,7 @@ def sent_analyzer():
     response = "For the given statement, the system response is "
     response += ", ".join([f"'{emotion}': {value}" for emotion, value in emotions.items()])
     response += f". The dominant emotion is **{dominant_emotion}**."
-    
+
     return response
 
 @app.route("/")
