@@ -27,8 +27,8 @@ def sent_analyzer():
     json_data = emotion_detector(text_to_analyze)
 
     # Estrazione delle emozioni e dei loro valori
-    emotions = {k: v for k, v in data.items() if k != 'dominant_emotion'}
-    dominant_emotion = data['dominant_emotion']
+    emotions = {k: v for k, v in json_data.items() if k != 'dominant_emotion'}
+    dominant_emotion = json_data['dominant_emotion']
 
     # Creazione della stringa di output
     response = "For the given statement, the system response is "
@@ -36,7 +36,6 @@ def sent_analyzer():
     response += f". The dominant emotion is **{dominant_emotion}**."
     
     return response
-
 
 @app.route("/")
 def render_index_page():
@@ -46,7 +45,4 @@ def render_index_page():
     return render_template('index.html')
 
 if __name__ == "__main__":
-    ''' This functions executes the flask app and deploys it on 
-        localhost:5000
-    '''
     app.run(host="0.0.0.0", port=5000)
