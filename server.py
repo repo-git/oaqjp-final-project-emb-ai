@@ -26,9 +26,14 @@ def sent_analyzer():
     # Pass the text to the emotion_detector function and store the response
     json_data = emotion_detector(text_to_analyze)
 
+    # Estraggo l'emozione dominante
+    dominant_emotion = json_data['dominant_emotion']
+    
+    if not dominant_emotion:
+        return "<b>Invalid text! Please try again!.</b>"
+    
     # Estrazione delle emozioni e dei loro valori
     emotions = {k: v for k, v in json_data.items() if k != 'dominant_emotion'}
-    dominant_emotion = json_data['dominant_emotion']
 
     # Creazione della stringa di output
     response = "For the given statement, the system response is "
